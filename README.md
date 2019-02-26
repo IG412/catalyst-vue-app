@@ -1,5 +1,11 @@
 # robb-j's Custom Vue.js project base
 
+## Custom features
+
+* `prettier` on git-commit
+* `pug` templating
+* `sass` indented syntax
+
 ## Development
 
 ```bash
