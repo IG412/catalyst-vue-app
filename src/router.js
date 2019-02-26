@@ -8,19 +8,21 @@ import { ROUTE_HOME, ROUTE_ABOUT } from '@/const'
 
 Vue.use(Router)
 
-export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: ROUTE_HOME,
-      component: Home
-    },
-    {
-      path: '/about',
-      name: ROUTE_ABOUT,
-      component: About
-    }
-  ]
-})
+export function makeRouter() {
+  return new Router({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+      {
+        path: '/',
+        name: ROUTE_HOME,
+        component: Home
+      },
+      {
+        path: '/about',
+        name: ROUTE_ABOUT,
+        component: About
+      }
+    ]
+  })
+}

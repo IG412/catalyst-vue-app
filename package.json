@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build src/entry-client.js",
     "lint": "vue-cli-service lint",
     "prettier": "prettier --write '**/*.{js,json,css,md,vue,sass}'"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.6.7",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
