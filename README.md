@@ -2,9 +2,9 @@
 
 ## Custom features
 
-* `prettier` on git-commit
-* `pug` templating
-* `sass` indented syntax
+- `prettier` on git-commit
+- `pug` templating
+- `sass` indented syntax
 
 ## Development
 
