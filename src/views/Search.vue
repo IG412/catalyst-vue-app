@@ -9,7 +9,13 @@
         placeholder="e.g. A.I. or Governance"
         v-model="searchQuery"
       )
-    
+  
+  .container
+    nav.breadcrumb.has-text-weight-bold
+      ul
+        li: router-link(to="/") Home
+        li.is-active: a(href="#") Search
+  
   section.section.page-expand
     .container(v-if="!hasQuery")
       .notification.is-grey.is-size-4

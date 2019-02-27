@@ -6,6 +6,12 @@
       span Find projects that need
       span  SOMETHING
   
+  .container
+    nav.breadcrumb.has-text-weight-bold
+      ul
+        li: router-link(to="/") Home
+        li.is-active: a(href="#") Needs Help
+  
   section.section.page-expand
     .container
       h2.title.is-3.is-marginless Nulla vitae elit libero, a pharetra augue.
