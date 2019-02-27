@@ -1,15 +1,29 @@
-$primary: #39A1ED
-// $info: #21897E
-// $border: #DFDFDF
-// $green: #90B874
-// 
-// $body-family: Raleway, sans-serif
-// 
-// $family-monospace: 'SF Mono', Consolas, 'Liberation Mono', Menlo, Courier, monospace
-// 
-// $navbar-height: 0
-// $title-weight: 800
-// 
-// $body-background-color: #f4f4f4
+$primary: #41bacd
+
+$theme-red: #fc494d
+$theme-green: #20ca86
+$theme-yellow: #fdae2a
+$theme-blue: #36c0cd
+
+$column-gap: 0.5rem
+
+$body-family: 'Avenir', Helvetica, Arial, sans-serif
+$family-monospace: 'SF Mono', Consolas, 'Liberation Mono', Menlo, Courier, monospace
+
+$title-weight: 900
+
+=add-theme-colors
+  &.is-red
+    background-color: $theme-red
+    color: rgba(0,0,0,0.7)
+  &.is-green
+    background-color: $theme-green
+    color: rgba(0,0,0,0.7)
+  &.is-yellow
+    background-color: $theme-yellow
+    color: rgba(0,0,0,0.7)
+  &.is-blue
+    background-color: $theme-blue
+    color: rgba(0,0,0,0.7)
 
 @import ~bulma/sass/utilities/_all.sass

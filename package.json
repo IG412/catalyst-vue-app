@@ -11,6 +11,7 @@
     "prettier": "prettier --write '**/*.{js,json,css,md,vue}'"
   },
   "dependencies": {
+    "bulma": "^0.7.4",
     "express": "^4.16.4",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",

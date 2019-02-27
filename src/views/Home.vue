@@ -1,16 +1,63 @@
 <template lang="pug">
-.home
-  img(alt="Vue logo" src="../assets/logo.png")
-  HelloWorld(msg="Welcome to Rob's Vue.js App")
+.page.home
+  PrimaryHero.is-medium
+    h1.title.inherit-color
+      span Find potential projects, get involved
+      br
+      span and make them happen!
+  .page-expand
+    section.section
+      .container
+        h2.title Pick a way to find projects
+        .columns.navigation-options
+          .column.is-one-quarter
+            NavigationCard(:to="browseRoute", color="green")
+              img(slot="image", src="@/assets/browse.svg")
+              h3.title.inherit-color Browse
+          .column.is-one-quarter
+            NavigationCard(:to="searchRoute", color="red")
+              img(slot="image", src="@/assets/search.svg")
+              h3.title.inherit-color Search
+          .column.is-one-quarter
+            NavigationCard(:to="needsHelpRoute", color="yellow")
+              img(slot="image", src="@/assets/needs.svg")
+              h3.title.inherit-color Help needed
+    
+    section.section
+      .container
+        h2.title What is this?
+        .content
+          p Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna. Nulla vitae elit libero, a pharetra augue. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+          p Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue.
+          p Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Etiam porta sem malesuada magna mollis euismod. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Aenean lacinia bibendum nulla sed consectetur.
+  PageFooter
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
+import PrimaryHero from '@/components/PrimaryHero.vue'
+import NavigationCard from '@/components/NavigationCard.vue'
+import PageFooter from '@/components/PageFooter.vue'
+
+import { ROUTE_BROWSE, ROUTE_SEARCH, ROUTE_NEEDS_HELP } from '@/const'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+  components: { PrimaryHero, NavigationCard, PageFooter },
+  data: () => ({
+    browseRoute: { name: ROUTE_BROWSE },
+    searchRoute: { name: ROUTE_SEARCH },
+    needsHelpRoute: { name: ROUTE_NEEDS_HELP }
+  })
 }
 </script>
+
+<style lang="sass">
+.home.page
+  .navigation-options .image
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+  h2.title
+    margin-bottom: 0.3em
+    font-size: $size-3
+</style>

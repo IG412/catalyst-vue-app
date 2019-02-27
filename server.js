@@ -26,8 +26,6 @@ server.use('/css', express.static(resolve(__dirname, './dist/css')))
 server.use('*', async (req, res) => {
   res.setHeader('Content-Type', 'text/html')
 
-  // const webapp = makeApp({ url: req.url })
-
   const context = {
     title: 'Not Equal Catalyst',
     url: req.url,
@@ -35,10 +33,12 @@ server.use('*', async (req, res) => {
       <meta name="test" value="lol">
     `.trim()
   }
+
   try {
     const html = await renderer.renderToString(context)
     res.send(html)
   } catch (error) {
+    console.log(error)
     if (error.url) {
       res.redirect(error.url)
     } else {

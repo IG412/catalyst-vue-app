@@ -2,9 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from './views/Home.vue'
-import About from './views/About.vue'
 
-import { ROUTE_HOME, ROUTE_ABOUT } from '@/const'
+import {
+  ROUTE_HOME,
+  ROUTE_BROWSE,
+  ROUTE_SEARCH,
+  ROUTE_NEEDS_HELP
+} from '@/const'
 
 Vue.use(Router)
 
@@ -19,9 +23,19 @@ export function makeRouter() {
         component: Home
       },
       {
-        path: '/about',
-        name: ROUTE_ABOUT,
-        component: About
+        path: '/browse',
+        name: ROUTE_BROWSE,
+        component: Home
+      },
+      {
+        path: '/search',
+        name: ROUTE_SEARCH,
+        component: Home
+      },
+      {
+        path: '/needs-help',
+        name: ROUTE_NEEDS_HELP,
+        component: Home
       }
     ]
   })
