@@ -17,6 +17,9 @@
 const allColors = ['red', 'green', 'yellow', 'blue']
 
 export default {
+  props: {
+    randomize: { type: Boolean, default: false }
+  },
   data() {
     return {
       color: 'blue',
@@ -25,16 +28,15 @@ export default {
   },
   computed: {
     classes() {
-      return [`is-${this.color}`]
-    },
-    nextColors() {
-      return allColors.filter(c => c !== this.color)
+      return this.randomize ? [`is-${this.color}`] : []
     }
   },
   mounted() {
-    // this.timerId = setInterval(() => {
-    //   this.color = this.pickColor()
-    // }, 5000)
+    if (this.randomize) {
+      // this.timerId = setInterval(() => {
+      //   this.color = this.pickColor()
+      // }, 5000)
+    }
   },
   destroyed() {
     if (this.timerId) clearInterval(this.timerId)
@@ -48,9 +50,17 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .hero
   +add-theme-colors
   transition: background-color color
   transition-duration: 1s
+
+  .hero-title-icon
+    display: inline-block
+    height: 1.75em
+    line-height: 1em
+    vertical-align: middle
+    margin-right: 0.3em
+    fill: currentColor
 </style>

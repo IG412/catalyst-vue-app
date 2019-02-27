@@ -56,5 +56,9 @@ module.exports = {
       .rule('vue')
       .use('vue-loader')
       .tap(options => Object.assign(options, { optimizeSSR: false }))
+
+    const svgRule = config.module.rule('svg')
+    svgRule.uses.clear()
+    svgRule.use('vue-svg-loader').loader('vue-svg-loader')
   }
 }

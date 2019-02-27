@@ -8,11 +8,13 @@
     "build:client": "vue-cli-service build",
     "build:server": "WEBPACK_TARGET=node vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prettier": "prettier --write '**/*.{js,json,css,md,vue}'"
+    "prettier": "prettier --write '**/*.{js,json,css,md,vue}'",
+    "redis": "docker run -it --rm --name dev_redis -p 6379:6379 redis:4-alpine"
   },
   "dependencies": {
     "bulma": "^0.7.4",
     "express": "^4.16.4",
+    "ky": "^0.9.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.6.7",
@@ -40,6 +42,7 @@
     "pug-plain-loader": "^1.0.0",
     "sass": "^1.16.0",
     "sass-loader": "^7.1.0",
+    "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.5.21",
     "webpack-node-externals": "^1.7.2"
   },

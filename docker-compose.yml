@@ -1,0 +1,33 @@
+#
+# A docker compose file to spin up a redis, fetch projects and serve them on an api
+#
+
+version: '3'
+
+services:
+  # A data store for projects, lightweight and stored in memory
+  redis:
+    image: redis:4-alpine
+    restart: unless-stopped
+  
+  # Run the scraper once at startup
+  one-time-scraper:
+    image: openlab.ncl.ac.uk:4567/catalyst/trello-scraper:0.2.0
+    env_file: .env.development.local
+    environment:
+      REDIS_URL: redis://redis
+      TRELLO_BOARD_ID: 5c5aed4d6f28188f43ba86d4
+      TRELLO_LIST_ID: 5c5aee796eb6b98ee9e5a684
+    command: fetch --verbose
+  
+  # An api to serve the projects in redis
+  development-api:
+    image: openlab.ncl.ac.uk:4567/catalyst/node-api:0.1.0
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      WEB_URL: http://localhost:8080
+      REDIS_URL: redis://redis
+      LOG_LEVEL: info
+

@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from './views/Home.vue'
+import Browse from './views/Browse.vue'
+import Search from './views/Search.vue'
+import NeedsHelp from './views/NeedsHelp.vue'
 
 import {
   ROUTE_HOME,
@@ -25,17 +28,17 @@ export function makeRouter() {
       {
         path: '/browse',
         name: ROUTE_BROWSE,
-        component: Home
+        component: Browse
       },
       {
         path: '/search',
         name: ROUTE_SEARCH,
-        component: Home
+        component: Search
       },
       {
         path: '/needs-help',
         name: ROUTE_NEEDS_HELP,
-        component: Home
+        component: NeedsHelp
       }
     ]
   })

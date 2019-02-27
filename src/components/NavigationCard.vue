@@ -36,9 +36,9 @@ export default {
       bottom: 0
       left: 0
       right: 0
-      img
+      *
         width: 66%
-        opacity: 0.7
+        opacity: 0.9
 
   +mobile
     a
@@ -46,7 +46,7 @@ export default {
       align-items: center
     .title
       flex: 1
-    img
+    .image *
       width: 2em
       margin-right: 0.5em
 </style>

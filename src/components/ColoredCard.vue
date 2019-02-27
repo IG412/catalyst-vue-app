@@ -34,4 +34,7 @@ export default {
 
   &.is-interactable:hover
     transform: translateY(-3px)
+
+  svg
+    fill: currentColor
 </style>

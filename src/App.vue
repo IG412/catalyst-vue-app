@@ -3,6 +3,37 @@
   router-view
 </template>
 
+<script>
+import ky from 'ky'
+
+import { MUTATION_PROJECTS } from '@/const'
+
+const api = ky.extend({
+  prefixUrl: 'http://localhost:3000'
+})
+
+export default {
+  computed: {
+    apiUrl() {
+      return 'http://localhost:3000'
+    }
+  },
+  mounted() {
+    this.fetchProjects()
+  },
+  methods: {
+    async fetchProjects() {
+      try {
+        let { data } = await api('projects').json()
+        this.$store.commit(MUTATION_PROJECTS, data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+}
+</script>
+
 <style lang="sass">
 @import ~@/sass/styles.sass
 
