@@ -12,7 +12,7 @@ services:
   
   # Run the scraper once at startup
   one-time-scraper:
-    image: openlab.ncl.ac.uk:4567/catalyst/trello-scraper:0.2.0
+    image: openlab.ncl.ac.uk:4567/catalyst/trello-scraper:0.3.0
     env_file: .env.development.local
     environment:
       REDIS_URL: redis://redis
@@ -22,7 +22,7 @@ services:
   
   # An api to serve the projects in redis
   development-api:
-    image: openlab.ncl.ac.uk:4567/catalyst/node-api:0.1.0
+    image: openlab.ncl.ac.uk:4567/catalyst/node-api:0.2.0
     restart: unless-stopped
     ports:
       - 3000:3000

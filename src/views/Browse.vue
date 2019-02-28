@@ -12,22 +12,74 @@
         li.is-active: a(href="#") Browse
   
   section.section.page-expand
-    .container
-      h2.title.is-3.is-marginless Nulla vitae elit libero, a pharetra augue.
-      .content
-        p Sed posuere consectetur est at lobortis. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-        p Nullam id dolor id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
-        p Sed posuere consectetur est at lobortis. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+    .container(v-if="browseData")
+      ProjectColumns(
+        v-for="mode in browseData",
+        :key="browseId(mode)",
+        :title="browseTitle(mode)",
+        :projects="mode.projects"
+      )
 </template>
 
 <script>
 import PrimaryHero from '@/components/PrimaryHero.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import ProjectColumns from '@/components/ProjectColumns.vue'
 
 import BrowseSvg from '@/assets/browse.svg'
 
+import CategoryData from '@/data/categories.json'
+import NeedsData from '@/data/needs.json'
+
+const BrowseTitles = {
+  newest: 'Newest projects',
+  oldest: 'Oldest projects',
+  recentUpdate: 'Recently Updated projects',
+  random: 'Random projects'
+}
+
 export default {
-  components: { PrimaryHero, PageFooter, BrowseSvg }
+  components: { PrimaryHero, PageFooter, ProjectColumns, BrowseSvg },
+  data: () => ({
+    browseData: null
+  }),
+  mounted() {
+    this.fetchBrowsing()
+  },
+  methods: {
+    async fetchBrowsing() {
+      try {
+        let { data } = await this.$api('browse').json()
+        this.browseData = data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    capitalize(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    },
+    browseId(mode) {
+      return [mode.type, mode.filter].join(':')
+    },
+    browseTitle(mode) {
+      switch (mode.type) {
+        case 'theme': {
+          return `#${mode.filter}`
+        }
+        case 'need': {
+          let need = NeedsData[mode.filter]
+          return `Needs ${need ? need.name : this.capitalize(mode.filter)}`
+        }
+        case 'category': {
+          let category = CategoryData[mode.filter]
+          return category ? category.name : mode.filter
+        }
+        default: {
+          return BrowseTitles[mode.type] || this.capitalize(mode.type)
+        }
+      }
+    }
+  }
 }
 </script>
 

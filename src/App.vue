@@ -4,13 +4,7 @@
 </template>
 
 <script>
-import ky from 'ky'
-
 import { MUTATION_PROJECTS } from '@/const'
-
-const api = ky.extend({
-  prefixUrl: 'http://localhost:3000'
-})
 
 export default {
   computed: {
@@ -24,7 +18,7 @@ export default {
   methods: {
     async fetchProjects() {
       try {
-        let { data } = await api('projects').json()
+        let { data } = await this.$api('projects').json()
         this.$store.commit(MUTATION_PROJECTS, data)
       } catch (error) {
         console.log(error)

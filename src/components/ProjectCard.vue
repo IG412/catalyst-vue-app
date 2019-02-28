@@ -38,4 +38,10 @@ export default {
 .knockout-text
   font-weight: 900
   mix-blend-mode: screen
+a
+  height: 100%
+  display: flex
+  flex-direction: column
+.title
+  flex: 1
 </style>
