@@ -15,31 +15,52 @@ import {
 
 Vue.use(Router)
 
+function makeMeta(pageName) {
+  return { meta: { pageName } }
+}
+
 export function makeRouter() {
-  return new Router({
+  let router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
       {
         path: '/',
         name: ROUTE_HOME,
-        component: Home
+        component: Home,
+        ...makeMeta('Home')
       },
       {
         path: '/browse',
         name: ROUTE_BROWSE,
-        component: Browse
+        component: Browse,
+        ...makeMeta('Browse')
       },
       {
         path: '/search',
         name: ROUTE_SEARCH,
-        component: Search
+        component: Search,
+        ...makeMeta('Search')
       },
       {
         path: '/needs-help',
         name: ROUTE_NEEDS_HELP,
-        component: NeedsHelp
+        component: NeedsHelp,
+        ...makeMeta('Needs Help')
       }
     ]
   })
+
+  router.beforeEach((to, from, next) => {
+    let title = 'Not-Equal Catalyst'
+
+    if (to.meta && to.meta.pageName) {
+      title = `${to.meta.pageName} | ${title}`
+    }
+
+    window.document.title = title
+    next()
+  })
+
+  return router
 }

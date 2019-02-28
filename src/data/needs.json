@@ -1,1 +1,11 @@
-{}
+{
+  "academic": {
+    "name": "a researcher"
+  },
+  "technical": {
+    "name": "a techie"
+  },
+  "community-group": {
+    "name": "a community group"
+  }
+}

@@ -24,22 +24,31 @@
       .notification.is-warning.is-size-4
         | No matches, check your query or try a different one
     .container(v-else)
-      h2.title.is-3.is-marginless Matched projects
-      p Lol...
+      ProjectColumns(title="Matched Projects", :projects="matchedProjects")
   PageFooter
 </template>
 
 <script>
 import PrimaryHero from '@/components/PrimaryHero.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import ProjectColumns from '@/components/ProjectColumns.vue'
 
 import SearchSvg from '@/assets/search.svg'
 
+import { ROUTE_SEARCH } from '@/const'
+
 export default {
-  components: { PrimaryHero, PageFooter, SearchSvg },
-  data: () => ({
-    searchQuery: ''
-  }),
+  components: {
+    PrimaryHero,
+    PageFooter,
+    ProjectColumns,
+    SearchSvg
+  },
+  data() {
+    return {
+      searchQuery: this.$route.query.query || ''
+    }
+  },
   computed: {
     hasQuery() {
       return this.searchQuery.trim().length > 0
@@ -49,13 +58,27 @@ export default {
     },
     matchedProjects() {
       return this.$store.state.projects.filter(project =>
-        this.projectMatchesQuery(project, this.searchQuery)
+        this.queryProject(project, this.searchQuery)
       )
     }
   },
+  watch: {
+    searchQuery(newValue) {
+      const query = { query: newValue }
+      this.$router.replace({ name: ROUTE_SEARCH, query })
+    }
+  },
   methods: {
-    projectMatchesQuery(project, query) {
-      return true
+    queryProject(project, query) {
+      let regex = new RegExp(query.trim(), 'gi')
+      const predicate = string => regex.test(string)
+      const relationPredicate = rel => predicate(rel.name)
+
+      return (
+        predicate(project.name) ||
+        predicate(project.desc) ||
+        project.themes.some(relationPredicate)
+      )
     }
   }
 }
@@ -63,17 +86,7 @@ export default {
 
 <style lang="sass" scoped>
 .search-input
-  margin: 0 0.1em
-  padding: 0
-  box-shadow: none
-  background: transparent
-  outline: none
-  border: none
-  font-size: inherit
-  border-bottom: 2px solid rgba(255,255,255, 0.7)
-  color: $white
-  min-width: 360px
-  display: inline-block
+  +header-input
 
   &::placeholder
     color: $white

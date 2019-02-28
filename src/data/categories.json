@@ -1,1 +1,18 @@
-{}
+{
+  "algorithms": {
+    "name": "Algorithmic Social Justice",
+    "color": "red"
+  },
+  "security": {
+    "name": "Digital Security for all",
+    "color": "green"
+  },
+  "fairness": {
+    "name": "Fairer futures for business + workforce",
+    "color": "yellow"
+  },
+  "mixed": {
+    "name": "Mixed",
+    "color": "blue"
+  }
+}
