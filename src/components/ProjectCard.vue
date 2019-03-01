@@ -5,7 +5,7 @@ ColoredCard.project-card(:color="categoryColor", interactable)
       img(:src="categoryImage", :alt="categoryName")
     h3.title.inherit-color.is-4 {{ project.name }}
     .tags
-      .tag.is-white.knockout-text(
+      .tag.is-white.knockout-text.has-font-weight-black(
         v-for="theme in project.themes"
       ) {{theme.name}}
 </template>
@@ -15,18 +15,7 @@ import ColoredCard from './ColoredCard.vue'
 
 import { ROUTE_PROJECT } from '@/const'
 import CategoryData from '@/data/categories.json'
-
-import AlgorithmsPng from '@/assets/categories/algorithms.png'
-import FairnessPng from '@/assets/categories/fairness.png'
-import MixedPng from '@/assets/categories/mixed.png'
-import SecurityPng from '@/assets/categories/security.png'
-
-const imageMap = {
-  algorithms: AlgorithmsPng,
-  fairness: FairnessPng,
-  mixed: MixedPng,
-  security: SecurityPng
-}
+import ImageMap from '@/data/categoryImages'
 
 export default {
   components: { ColoredCard },
@@ -41,8 +30,7 @@ export default {
       return this.category ? this.category.color : 'blue'
     },
     categoryImage() {
-      if (!this.category) return imageMap.mixed
-      return imageMap[this.category.id] || imageMap.mixed
+      return (this.category && ImageMap[this.category.id]) || ImageMap.mixed
     },
     categoryName() {
       return this.category ? this.category.name : 'Mixed Category'
@@ -56,9 +44,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.knockout-text
-  font-weight: 900
-  mix-blend-mode: screen
 a
   height: 100%
   display: flex

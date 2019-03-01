@@ -6,7 +6,7 @@
         .navbar-brand
           router-link.navbar-item(to="/")
             img(src="@/assets/brand.png")
-        .navbar-end.is-hidden-touch
+        .navbar-end.is-hidden-touch(v-if="!hideNavigation")
           router-link.navbar-item(to="/browse", active-class="is-active") Browse
           router-link.navbar-item(to="/search", active-class="is-active") Search
           router-link.navbar-item(to="/needs-help", active-class="is-active") Help needed
@@ -22,7 +22,8 @@ const allColors = ['red', 'green', 'yellow', 'blue']
 
 export default {
   props: {
-    randomize: { type: Boolean, default: false }
+    randomize: { type: Boolean, default: false },
+    hideNavigation: { type: Boolean, default: false }
   },
   data() {
     return {

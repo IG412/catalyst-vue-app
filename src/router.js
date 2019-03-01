@@ -5,15 +5,19 @@ import Home from './views/Home.vue'
 import Browse from './views/Browse.vue'
 import Search from './views/Search.vue'
 import NeedsHelp from './views/NeedsHelp.vue'
+import Project from './views/Project.vue'
 
 import {
   ROUTE_HOME,
   ROUTE_BROWSE,
   ROUTE_SEARCH,
-  ROUTE_NEEDS_HELP
+  ROUTE_NEEDS_HELP,
+  ROUTE_PROJECT
 } from '@/const'
 
 Vue.use(Router)
+
+// TODO: Add NotFound route
 
 function makeMeta(pageName) {
   return { meta: { pageName } }
@@ -47,6 +51,12 @@ export function makeRouter() {
         name: ROUTE_NEEDS_HELP,
         component: NeedsHelp,
         ...makeMeta('Needs Help')
+      },
+      {
+        path: '/project/:id',
+        name: ROUTE_PROJECT,
+        component: Project,
+        ...makeMeta('Project')
       }
     ]
   })

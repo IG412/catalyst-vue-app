@@ -12,7 +12,7 @@
         li.is-active: a(href="#") Browse
   
   section.section.page-expand
-    .container(v-if="browseData")
+    .container(v-if="browseData.length > 0")
       ProjectColumns(
         v-for="mode in browseData",
         :key="browseId(mode)",
@@ -31,6 +31,8 @@ import BrowseSvg from '@/assets/browse.svg'
 import CategoryData from '@/data/categories.json'
 import NeedsData from '@/data/needs.json'
 
+import { MUTATION_BROWSE } from '@/const'
+
 const BrowseTitles = {
   newest: 'Newest projects',
   oldest: 'Oldest projects',
@@ -40,17 +42,21 @@ const BrowseTitles = {
 
 export default {
   components: { PrimaryHero, PageFooter, ProjectColumns, BrowseSvg },
-  data: () => ({
-    browseData: null
-  }),
+  computed: {
+    browseData() {
+      return this.$store.state.browse
+    }
+  },
   mounted() {
-    this.fetchBrowsing()
+    if (this.browseData.length === 0) {
+      this.fetchBrowsing()
+    }
   },
   methods: {
     async fetchBrowsing() {
       try {
         let { data } = await this.$api('browse').json()
-        this.browseData = data
+        this.$store.commit(MUTATION_BROWSE, data)
       } catch (error) {
         console.log(error)
       }
