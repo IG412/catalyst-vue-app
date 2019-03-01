@@ -68,7 +68,8 @@ export function makeRouter() {
       title = `${to.meta.pageName} | ${title}`
     }
 
-    window.document.title = title
+    if (typeof window !== 'undefined') window.document.title = title
+
     next()
   })
 

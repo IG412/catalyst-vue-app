@@ -1,13 +1,12 @@
 const { resolve } = require('path')
 const { readFileSync } = require('fs')
-
 const express = require('express')
 const { createBundleRenderer } = require('vue-server-renderer')
+const bundle = require('../dist/vue-ssr-server-bundle.json')
+const clientManifest = require('../dist/vue-ssr-client-manifest.json')
+const favicon = require('serve-favicon')
 
-const bundle = require('./dist/vue-ssr-server-bundle.json')
-const clientManifest = require('./dist/vue-ssr-client-manifest.json')
-
-const templatePath = resolve(__dirname, 'src/index.template.html')
+const templatePath = resolve(__dirname, 'index.template.html')
 const template = readFileSync(templatePath, 'utf-8')
   .replace(/^\s+/gm, '')
   .replace(/\n/g, '')
@@ -19,9 +18,10 @@ const renderer = createBundleRenderer(bundle, {
   clientManifest
 })
 
-server.use('/js', express.static(resolve(__dirname, './dist/js')))
-server.use('/img', express.static(resolve(__dirname, './dist/img')))
-server.use('/css', express.static(resolve(__dirname, './dist/css')))
+server.use(favicon('./public/favicon.png'))
+server.use('/js', express.static(resolve(__dirname, '../dist/js')))
+server.use('/img', express.static(resolve(__dirname, '../dist/img')))
+server.use('/css', express.static(resolve(__dirname, '../dist/css')))
 
 server.use('*', async (req, res) => {
   res.setHeader('Content-Type', 'text/html')
