@@ -1,17 +1,21 @@
 {
   "algorithms": {
+    "id": "algorithms",
     "name": "Algorithmic Social Justice",
     "color": "red"
   },
   "security": {
+    "id": "security",
     "name": "Digital Security for all",
     "color": "green"
   },
   "fairness": {
+    "id": "fairness",
     "name": "Fairer futures for business + workforce",
     "color": "yellow"
   },
   "mixed": {
+    "id": "mixed",
     "name": "Cross-cutting",
     "color": "blue"
   }
