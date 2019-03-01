@@ -19,6 +19,7 @@
         :title="browseTitle(mode)",
         :projects="mode.projects"
       )
+  PageFooter
 </template>
 
 <script>

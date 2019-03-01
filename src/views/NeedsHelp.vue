@@ -22,6 +22,7 @@
         | Pick a need to start finding projects
     .container(v-else)
       ProjectColumns(title="Matched Projects", :projects="matchedProjects")
+  PageFooter
 </template>
 
 <script>
