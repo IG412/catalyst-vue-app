@@ -36,7 +36,7 @@ export function makeStore() {
           let { data } = await apiClient('projects', getters.apiConf).json()
           commit(MUTATION_PROJECTS, data)
         } catch (error) {
-          console.log(error)
+          console.error(error)
         }
       },
       async fetchBrowsing({ commit, getters }) {
@@ -44,7 +44,7 @@ export function makeStore() {
           let { data } = await apiClient('browse', getters.apiConf).json()
           commit(MUTATION_BROWSE, data)
         } catch (error) {
-          console.log(error)
+          console.error(error)
         }
       }
     }

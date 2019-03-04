@@ -6,6 +6,7 @@ const bundle = require('../dist/vue-ssr-server-bundle.json')
 const clientManifest = require('../dist/vue-ssr-client-manifest.json')
 const favicon = require('serve-favicon')
 const redis = require('redis')
+const stoppable = require('stoppable')
 const validateEnv = require('valid-env')
 const { renderVueApp } = require('./renderVueApp')
 const { generateMeta } = require('./generateMeta')
@@ -36,6 +37,7 @@ const renderer = createBundleRenderer(bundle, {
 const appName = process.env.APP_NAME || `Not-Equal Catalyst`
 const apiUrl = process.env.API_URL
 const baseState = { appName, apiUrl }
+let httpServer = null
 
 // Setup our express server
 const server = express()
@@ -56,7 +58,7 @@ server.get('/project/:id', async (req, res, next) => {
 
   // Render the project route, with specific metadata
   renderVueApp(req, res, renderer, req.url, {
-    title: `${project.name} | Not-Equal Catalyst`,
+    title: `Project | Not-Equal Catalyst`,
     meta: generateMeta(req.url, 'Catalyst Project', [
       { property: 'og:description', content: project.name }
     ]),
@@ -75,20 +77,44 @@ server.use('*', async (req, res) => {
 
 // Server entrypoint
 ;(async () => {
-  // First connect to the redis server
-  await new Promise((resolve, reject) => {
-    db.on('ready', () => resolve())
-    db.on('error', error => reject(error))
-  })
-
-  // Attach our express server to port 8080
-  await new Promise((resolve, reject) => {
-    server.listen(8080, err => {
-      if (err) reject(err)
-      else resolve()
+  try {
+    // First connect to the redis server
+    await new Promise((resolve, reject) => {
+      db.on('ready', () => resolve())
+      db.on('error', error => reject(error))
     })
-  })
 
-  // Let the cli know we're running
-  console.log('Listening on :8080')
+    // Attach our express server to port 8080
+    await new Promise((resolve, reject) => {
+      httpServer = server.listen(8080, err => {
+        if (err) reject(err)
+        else resolve()
+      })
+    })
+
+    // Let the cli know we're running
+    console.log('Listening on :8080')
+  } catch (error) {
+    console.log('Failed to startup', error.message)
+    process.exit(1)
+  }
 })()
+
+// Listen for process stop signals
+const exit = async () => {
+  console.log('\n Exiting cleanly')
+
+  if (db) {
+    console.log('Closing db')
+    db.quit()
+  }
+
+  if (httpServer) {
+    console.log('Stopping server')
+    await new Promise(resolve => stoppable(httpServer).stop(resolve))
+  }
+
+  process.exit()
+}
+process.on('SIGINT', () => exit())
+process.on('SIGTERM', () => exit())

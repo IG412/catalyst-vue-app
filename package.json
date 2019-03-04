@@ -1,6 +1,6 @@
 {
   "name": "vue-webapp",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,12 +12,19 @@
     "redis": "docker run -it --rm --name dev_redis -p 6379:6379 redis:4-alpine"
   },
   "dependencies": {
+    "@vue/babel-preset-app": "^3.4.1",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "marked": "^0.6.1",
     "redis": "^2.8.0",
     "serve-favicon": "^2.5.0",
+    "stoppable": "^1.1.0",
     "valid-env": "^0.1.3",
-    "vue-server-renderer": "^2.6.7"
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.6.7",
+    "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
@@ -38,18 +45,13 @@
     "husky": "^1.3.1",
     "ky": "^0.9.0",
     "lint-staged": "^8.1.4",
-    "marked": "^0.6.1",
     "prettier": "^1.16.4",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass": "^1.16.0",
     "sass-loader": "^7.1.0",
-    "vue": "^2.6.6",
-    "vue-router": "^3.0.1",
     "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.5.21",
-    "vuex": "^3.0.1",
-    "vuex-router-sync": "^5.0.0",
     "webpack-node-externals": "^1.7.2"
   },
   "husky": {

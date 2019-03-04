@@ -9,11 +9,11 @@ FROM base as builder
 ENV NODE_ENV development
 RUN npm ci &> /dev/null
 COPY [ ".", "/app/" ]
-RUN npm run build &> /dev/null
+RUN NODE_ENV=production npm run build &> /dev/null
 
 # Starting from the base again, install prodiction dependancies,
 # The copy in the compiled app files from the builder and start the server
-FROM builder
+FROM base
 ENV NODE_ENV production
 RUN npm ci &> /dev/null
 COPY ["server", "/app/server"]
