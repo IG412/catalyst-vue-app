@@ -4,8 +4,6 @@
 </template>
 
 <script>
-import { MUTATION_PROJECTS } from '@/const'
-
 export default {
   computed: {
     apiUrl() {
@@ -16,18 +14,8 @@ export default {
     // Wait for next tick to allow for hydration (TODO: find a better way)
     this.$nextTick(() => {
       const { projects = [] } = this.$store.state
-      if (projects.length === 0) this.fetchProjects()
+      if (projects.length === 0) this.$store.dispatch('fetchProjects')
     })
-  },
-  methods: {
-    async fetchProjects() {
-      try {
-        let { data } = await this.$api('projects').json()
-        this.$store.commit(MUTATION_PROJECTS, data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
   }
 }
 </script>

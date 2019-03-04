@@ -4,8 +4,6 @@ import { makeRouter } from './router'
 import { makeStore } from './store'
 import { sync } from 'vuex-router-sync'
 
-import './api.js'
-
 Vue.config.productionTip = false
 
 export function makeApp() {
@@ -18,7 +16,7 @@ export function makeApp() {
     router,
     store,
     render: h => h(App)
-  }).$mount('#app')
+  })
 
   return { app, router, store }
 }

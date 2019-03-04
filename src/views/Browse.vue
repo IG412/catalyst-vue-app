@@ -32,8 +32,6 @@ import BrowseSvg from '@/assets/browse.svg'
 import CategoryData from '@/data/categories.json'
 import NeedsData from '@/data/needs.json'
 
-import { MUTATION_BROWSE } from '@/const'
-
 const BrowseTitles = {
   newest: 'Newest projects',
   oldest: 'Oldest projects',
@@ -50,18 +48,10 @@ export default {
   },
   mounted() {
     if (this.browseData.length === 0) {
-      this.fetchBrowsing()
+      this.$store.dispatch('fetchBrowsing')
     }
   },
   methods: {
-    async fetchBrowsing() {
-      try {
-        let { data } = await this.$api('browse').json()
-        this.$store.commit(MUTATION_BROWSE, data)
-      } catch (error) {
-        console.log(error)
-      }
-    },
     capitalize(string) {
       return string.charAt(0).toUpperCase() + string.slice(1)
     },

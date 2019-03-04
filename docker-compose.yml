@@ -15,7 +15,7 @@ services:
   # Run the scraper once at startup
   one-time-scraper:
     image: openlab.ncl.ac.uk:4567/catalyst/trello-scraper:0.3.0
-    env_file: .env.development.local
+    env_file: .env.local
     environment:
       REDIS_URL: redis://redis
       TRELLO_BOARD_ID: 5c5aed4d6f28188f43ba86d4

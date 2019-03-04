@@ -10,19 +10,16 @@ export default context => {
       const matchedComponents = router.getMatchedComponents()
 
       context.rendered = () => {
-        if (context.projects) {
-          store.commit('set_projects', context.projects)
-        }
-        context.state = store.state
+        context.state = { ...store.state, ...context.state }
       }
 
-      if (!matchedComponents.length) {
+      if (matchedComponents.length === 0) {
         let error = new Error('Not Found')
         error.code = 404
-        reject(error)
-      } else {
-        resolve(app)
+        return reject(error)
       }
+
+      resolve(app)
     }, reject)
   })
 }

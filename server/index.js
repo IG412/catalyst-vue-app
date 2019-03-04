@@ -33,7 +33,9 @@ const renderer = createBundleRenderer(bundle, {
   clientManifest
 })
 
-const appName = `Not-Equal Catalyst`
+const appName = process.env.APP_NAME || `Not-Equal Catalyst`
+const apiUrl = process.env.API_URL
+const baseState = { appName, apiUrl }
 
 // Setup our express server
 const server = express()
@@ -53,21 +55,21 @@ server.get('/project/:id', async (req, res, next) => {
   if (!project) return next()
 
   // Render the project route, with specific metadata
-  renderVueApp(req, res, renderer, {
+  renderVueApp(req, res, renderer, req.url, {
     title: `${project.name} | Not-Equal Catalyst`,
-    meta: generateMeta(req, 'Catalyst Project', [
+    meta: generateMeta(req.url, 'Catalyst Project', [
       { property: 'og:description', content: project.name }
     ]),
-    projects
+    state: baseState
   })
 })
 
 // Handle every other route by rendering the vue app
 server.use('*', async (req, res) => {
-  renderVueApp(req, res, renderer, {
+  renderVueApp(req, res, renderer, req.originalUrl, {
     title: appName,
-    meta: generateMeta(req, appName),
-    projects: await getProjects(db)
+    meta: generateMeta(req.originalUrl, appName),
+    state: baseState
   })
 })
 

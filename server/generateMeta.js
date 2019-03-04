@@ -1,4 +1,4 @@
-function generateMeta(req, title, customMeta = []) {
+function generateMeta(url, title, customMeta = []) {
   let tags = []
 
   const baseUrl = process.env.PUBLIC_URL
@@ -7,7 +7,7 @@ function generateMeta(req, title, customMeta = []) {
     { property: 'og:title', content: title },
     { property: 'og:type', content: 'website' },
     { property: 'og:image', content: baseUrl + '/public/favicon.png' },
-    { property: 'og:url', content: baseUrl + req.url }
+    { property: 'og:url', content: baseUrl + url }
   ].concat(customMeta)
 
   for (let attrs of meta) {

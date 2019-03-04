@@ -1,11 +1,14 @@
-async function renderVueApp(req, res, renderer, context) {
+async function renderVueApp(req, res, renderer, url, context) {
   res.setHeader('Content-Type', 'text/html')
 
-  context.url = req.url
+  console.log(url)
+
+  context.url = url
   context.meta = context.meta || ''
+  context.apiUrl = process.env.API_URL
 
   try {
-    res.send(await renderer.renderToString(context))
+    res.end(await renderer.renderToString(context))
   } catch (error) {
     console.log(error)
     if (error.url) {
@@ -13,7 +16,7 @@ async function renderVueApp(req, res, renderer, context) {
     } else {
       // Render Error Page or Redirect
       res.status(error.code || 500).end(error.message)
-      console.error(`error during render : ${req.url}`)
+      console.error(`error during render : ${url}`)
       console.error(error)
     }
   }
