@@ -9,6 +9,8 @@ services:
   redis:
     image: redis:4-alpine
     restart: unless-stopped
+    ports:
+      - 6379:6379
   
   # Run the scraper once at startup
   one-time-scraper:

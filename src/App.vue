@@ -13,7 +13,11 @@ export default {
     }
   },
   mounted() {
-    this.fetchProjects()
+    // Wait for next tick to allow for hydration (TODO: find a better way)
+    this.$nextTick(() => {
+      const { projects = [] } = this.$store.state
+      if (projects.length === 0) this.fetchProjects()
+    })
   },
   methods: {
     async fetchProjects() {

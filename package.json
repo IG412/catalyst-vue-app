@@ -12,8 +12,11 @@
     "redis": "docker run -it --rm --name dev_redis -p 6379:6379 redis:4-alpine"
   },
   "dependencies": {
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "redis": "^2.8.0",
     "serve-favicon": "^2.5.0",
+    "valid-env": "^0.1.3",
     "vue-server-renderer": "^2.6.7"
   },
   "devDependencies": {
@@ -46,6 +49,7 @@
     "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.5.21",
     "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0",
     "webpack-node-externals": "^1.7.2"
   },
   "husky": {

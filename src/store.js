@@ -7,10 +7,10 @@ Vue.use(Vuex)
 
 export function makeStore() {
   return new Vuex.Store({
-    state: {
+    state: () => ({
       projects: [],
       browse: []
-    },
+    }),
     mutations: {
       [MUTATION_PROJECTS](state, projects) {
         state.projects = projects
