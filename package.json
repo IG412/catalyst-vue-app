@@ -1,7 +1,11 @@
 {
-  "name": "vue-webapp",
-  "version": "0.1.0",
+  "name": "@openlab/catalyst-vue-webapp",
   "private": true,
+  "version": "0.1.0",
+  "description": "A Vue web app for browsing, searching and viewing Not-Equal Catalyst projects",
+  "repository": "unplatform/catalyst-vue-webapp",
+  "author": "Rob Anderson (https://r0b.io)",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run build:server -- --silent && npm run build:client -- --no-clean --silent",
@@ -11,6 +15,11 @@
     "prettier": "prettier --write '**/*.{js,json,css,md,vue}'",
     "gen-readme-toc": "npx @robb_j/md-toc -i"
   },
+  "keywords": [
+    "not-equal-catalyst",
+    "vue",
+    "webapp"
+  ],
   "dependencies": {
     "@vue/babel-preset-app": "^3.4.1",
     "dotenv": "^6.2.0",
