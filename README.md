@@ -8,6 +8,21 @@ It is a [Vue.js](https://vuejs.org/) project written in JavaScript,
 
 <!-- toc-head -->
 
+## Table of Contents
+
+- [Development](#development)
+  - [Setup](#setup)
+  - [Regular use](#regular-use)
+  - [Irregular use](#irregular-use)
+  - [Code Structure](#code-structure)
+  - [Webpack build](#webpack-build)
+  - [Code formatting](#code-formatting)
+- [Deployment](#deployment)
+  - [Building the image](#building-the-image)
+  - [Using the image](#using-the-image)
+  - [Environment variables](#environment-variables)
+- [Future work](#future-work)
+
 <!-- toc-tail -->
 
 ## Development
