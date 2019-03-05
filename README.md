@@ -162,7 +162,7 @@ A slight nuance is that it will replace a preceding `v` in tag names, formatting
 # Deploy a new version of the CLI
 npm version # major | minor | patch
 git push --tags
-https://openlab.ncl.ac.uk/gitlab/catalyst/vue-webapp/pipelines
+open https://openlab.ncl.ac.uk/gitlab/catalyst/vue-webapp/pipelines
 ```
 
 ### Using the image
