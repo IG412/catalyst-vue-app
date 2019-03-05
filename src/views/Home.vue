@@ -1,6 +1,6 @@
 <template lang="pug">
 .page.home
-  PrimaryHero.is-medium(randomize)
+  PrimaryHero.is-medium.is-gradient
     h1.title.has-text-white
       span Find potential projects, get involved
       br
