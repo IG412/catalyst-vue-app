@@ -9,7 +9,7 @@
     "build:server": "WEBPACK_TARGET=node vue-cli-service build",
     "lint": "vue-cli-service lint",
     "prettier": "prettier --write '**/*.{js,json,css,md,vue}'",
-    "redis": "docker run -it --rm --name dev_redis -p 6379:6379 redis:4-alpine"
+    "gen-readme-toc": "npx @robb_j/md-toc -i"
   },
   "dependencies": {
     "@vue/babel-preset-app": "^3.4.1",

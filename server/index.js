@@ -15,7 +15,7 @@ const dotenv = require('dotenv')
 
 // Load config from server.env and ensure the correct values are set
 // Will exit(1) if required variables are undefined
-dotenv.config({ path: resolve(__dirname, '../server.env') })
+dotenv.config({ path: resolve(__dirname, '../.env.server.local') })
 validateEnv(['REDIS_URL', 'PUBLIC_URL', 'API_URL'])
 
 // Setup variables for our template
