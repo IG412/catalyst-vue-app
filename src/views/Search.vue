@@ -1,7 +1,7 @@
 <template lang="pug">
 .page.search
   PrimaryHero.is-red
-    h1.title.inherit-color
+    h1.title.inherit-color.is-size-4-mobile
       SearchSvg.hero-title-icon
       span Search for projects: 
       input.search-input(

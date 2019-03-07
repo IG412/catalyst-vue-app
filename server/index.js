@@ -35,6 +35,8 @@ const renderer = createBundleRenderer(bundle, {
 })
 
 const appName = process.env.APP_NAME || `Not-Equal Catalyst`
+const appInfo =
+  process.env.APP_INFO || `Search, browse and find Not-Equal projects`
 const apiUrl = process.env.API_URL
 const baseState = { appName, apiUrl }
 let httpServer = null
@@ -59,7 +61,7 @@ server.get('/project/:id', async (req, res, next) => {
   // Render the project route, with specific metadata
   renderVueApp(req, res, renderer, req.url, {
     title: `Project | Not-Equal Catalyst`,
-    meta: generateMeta(req.url, 'Catalyst Project', [
+    meta: generateMeta(req.url, 'Not-Equal Catalyst Project', [
       { property: 'og:description', content: project.name }
     ]),
     state: baseState
@@ -70,7 +72,9 @@ server.get('/project/:id', async (req, res, next) => {
 server.use('*', async (req, res) => {
   renderVueApp(req, res, renderer, req.originalUrl, {
     title: appName,
-    meta: generateMeta(req.originalUrl, appName),
+    meta: generateMeta(req.originalUrl, appName, [
+      { property: 'og:description', content: appInfo }
+    ]),
     state: baseState
   })
 })

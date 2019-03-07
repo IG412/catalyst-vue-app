@@ -1,8 +1,6 @@
 async function renderVueApp(req, res, renderer, url, context) {
   res.setHeader('Content-Type', 'text/html')
 
-  console.log(url)
-
   context.url = url
   context.meta = context.meta || ''
   context.apiUrl = process.env.API_URL

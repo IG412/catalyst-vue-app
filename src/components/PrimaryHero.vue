@@ -22,6 +22,7 @@
   +add-theme-colors
 
   &.is-gradient
+    color: $white
     background-image: linear-gradient(to left, #36C0CD, #1FC986)
 
   .hero-title-icon

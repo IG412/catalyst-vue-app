@@ -198,6 +198,13 @@ There are some required environment variables, shown below.
 | PUBLIC_URL | Where the app is, used for generating opengraph meta  |
 | API_URL    | Where the api is, passed into the webapp through vuex |
 
+There are some optional variables too:
+
+| Variable | Description                                  |
+| -------- | -------------------------------------------- |
+| APP_NAME | Set the app's name, used in opengraph        |
+| APP_INFO | Set the app's description, used in opengraph |
+
 ## Future work
 
 > Coming soon

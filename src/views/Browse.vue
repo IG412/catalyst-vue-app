@@ -1,7 +1,7 @@
 <template lang="pug">
 .page.browse
   PrimaryHero.is-green
-    h1.title.inherit-color
+    h1.title.inherit-color.is-size-4-mobile
       BrowseSvg.hero-title-icon
       span Browse all projects
   

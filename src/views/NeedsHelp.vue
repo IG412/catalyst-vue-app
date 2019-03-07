@@ -1,7 +1,7 @@
 <template lang="pug">
 .page.browse
   PrimaryHero.is-yellow
-    h1.title.inherit-color
+    h1.title.inherit-color.is-size-4-mobile
       NeedsHelpSvg.hero-title-icon
       span Find projects that need: 
       .need-picker

@@ -6,8 +6,10 @@ function generateMeta(url, title, customMeta = []) {
   const meta = [
     { property: 'og:title', content: title },
     { property: 'og:type', content: 'website' },
-    { property: 'og:image', content: baseUrl + '/public/favicon.png' },
-    { property: 'og:url', content: baseUrl + url }
+    { property: 'og:image', content: baseUrl + '/public/opengraph.png' },
+    { property: 'og:url', content: baseUrl + url },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:site', content: 'notequaltech' }
   ].concat(customMeta)
 
   for (let attrs of meta) {

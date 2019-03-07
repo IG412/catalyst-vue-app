@@ -1,7 +1,7 @@
 <template lang="pug">
 .page.home
   PrimaryHero.is-medium.is-gradient
-    h1.title.has-text-white
+    h1.title.inherit-color.is-size-4-mobile
       span Find potential projects, get involved
       br
       span and make them happen!
@@ -70,4 +70,8 @@ export default {
     display: flex
     flex-direction: column
     justify-content: center
+
+  +mobile
+    .navigation-card > a
+      padding: 1.5rem 1rem
 </style>
