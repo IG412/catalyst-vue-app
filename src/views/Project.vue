@@ -81,6 +81,14 @@ export default {
     width: 96px
 
   .content
+    border-radius: 2px
+    padding: 1rem
+    background-color: rgba(0,0,0,0.1)
+    font-family: Helvetica, Arial, sans-serif
+
+    +mobile
+      padding: 0.75rem
+
     a
       color: inherit
       font-weight: bold

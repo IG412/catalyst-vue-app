@@ -3,7 +3,7 @@ ColoredCard.project-card(:color="categoryColor", interactable)
   router-link.inherit-color(:to="projectRoute")
     .category-image
       img(:src="categoryImage", :alt="categoryName")
-    h3.title.inherit-color.is-4 {{ project.name }}
+    h3.title.inherit-color.is-4.is-marginless {{ project.name }}
     .tags
       .tag.is-white.knockout-text.has-font-weight-black(
         v-for="theme in project.themes"
@@ -54,13 +54,18 @@ a
   padding: 1em 2em
 +mobile
   .project-card a
+    flex-wrap: wrap
     flex-direction: row
+    align-items: flex-start
+  .title
+    width: 100%
+    padding-left: 0.3em
   .category-image
     width: 64px
     padding: 0
     margin-right: 0.5em
   .tags
-    flex: 0
-    flex-direction: column
-    align-items: flex-end
+    flex: none
+    width: 100%
+    justify-content: flex-end
 </style>

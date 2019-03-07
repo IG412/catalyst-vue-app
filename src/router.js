@@ -58,7 +58,14 @@ export function makeRouter() {
         component: Project,
         ...makeMeta('Project')
       }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+      // Go to the top when going from '/' to '/browse'
+      if (to.name === ROUTE_BROWSE && from.name === ROUTE_HOME) {
+        return { x: 0, y: 0 }
+      }
+      return savedPosition
+    }
   })
 
   router.beforeEach((to, from, next) => {
