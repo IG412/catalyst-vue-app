@@ -17,7 +17,7 @@
         v-for="mode in browseData",
         :key="browseId(mode)",
         :title="browseTitle(mode)",
-        :projects="mode.projects"
+        :projects="mode.projects.slice(0, 4)"
       )
   PageFooter
 </template>

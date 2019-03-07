@@ -4,7 +4,7 @@ footer.footer.page-footer.has-text-centered
     span Made by 
     ExternalAnchor(href="https://openlab.ncl.ac.uk") Open Lab
   p.links
-    a(href="https://github.com/unplatform", target="_blank") Open Source
+    a(href="https://github.com/unplatform/catalyst-about", target="_blank", rel="noopener") Open Source
     span.version version {{appVersion}}
 </template>
 

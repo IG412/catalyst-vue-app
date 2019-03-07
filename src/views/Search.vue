@@ -74,11 +74,7 @@ export default {
       const predicate = string => regex.test(string)
       const relationPredicate = rel => predicate(rel.name)
 
-      return (
-        predicate(project.name) ||
-        predicate(project.desc) ||
-        project.themes.some(relationPredicate)
-      )
+      return predicate(project.name) || project.themes.some(relationPredicate)
     }
   }
 }
