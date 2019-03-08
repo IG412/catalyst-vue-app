@@ -19,16 +19,14 @@
                   h1.title.inherit-color {{ project.name }}
                 .column.is-narrow
                   img.category-image(:src="categoryImage")
-              .content(v-html="content")
+              .content(v-html="projectContent")
               .tags
                 .tag.is-white.knockout-text.has-font-weight-black(
                   v-for="theme in project.themes"
                 ) {{theme.name}}
           .column
             h3.title.is-4.is-marginless What is this?
-            .content
-              p Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue.
-              p Sed posuere consectetur est at lobortis. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue.
+            .content(v-html="aboutContent")
   
   PageFooter
 </template>
@@ -65,8 +63,11 @@ export default {
     categoryImage() {
       return (this.category && ImageMap[this.category.id]) || ImageMap.mixed
     },
-    content() {
+    projectContent() {
       return marked(this.project.desc)
+    },
+    aboutContent() {
+      return marked(this.$store.getters.getContent('about.short', '...'))
     }
   }
 }

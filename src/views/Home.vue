@@ -26,15 +26,14 @@
     section.section
       .container
         h2.title.is-3.is-marginless What is this?
-        .content
-          p Curabitur blandit tempus porttitor. Maecenas sed diam eget risus varius blandit sit amet non magna. Nulla vitae elit libero, a pharetra augue. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          p Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue.
-          p Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Etiam porta sem malesuada magna mollis euismod. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Aenean lacinia bibendum nulla sed consectetur.
+        .content(v-html="aboutContent")
   
   PageFooter
 </template>
 
 <script>
+import marked from 'marked'
+
 import PrimaryHero from '@/components/PrimaryHero.vue'
 import NavigationCard from '@/components/NavigationCard.vue'
 import PageFooter from '@/components/PageFooter.vue'
@@ -58,7 +57,12 @@ export default {
     browseRoute: { name: ROUTE_BROWSE },
     searchRoute: { name: ROUTE_SEARCH },
     needsHelpRoute: { name: ROUTE_NEEDS_HELP }
-  })
+  }),
+  computed: {
+    aboutContent() {
+      return marked(this.$store.getters.getContent('about.long', '...'))
+    }
+  }
 }
 </script>
 

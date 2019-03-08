@@ -14,7 +14,7 @@ export default context => {
       }
 
       if (matchedComponents.length === 0) {
-        let error = new Error('Not Found')
+        let error = new Error(`Not found: ${context.url}`)
         error.code = 404
         return reject(error)
       }

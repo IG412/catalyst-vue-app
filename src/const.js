@@ -6,3 +6,4 @@ export const ROUTE_PROJECT = 'project'
 
 export const MUTATION_PROJECTS = 'set_projects'
 export const MUTATION_BROWSE = 'set_browse'
+export const MUTATION_CONTENT = 'set_content'

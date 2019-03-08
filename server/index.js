@@ -10,7 +10,7 @@ const stoppable = require('stoppable')
 const validateEnv = require('valid-env')
 const { renderVueApp } = require('./renderVueApp')
 const { generateMeta } = require('./generateMeta')
-const { getProjects } = require('./getProjects')
+const { getProjects, getContent } = require('./apiUtils')
 const dotenv = require('dotenv')
 
 // Load config from server.env and ensure the correct values are set
@@ -52,6 +52,7 @@ server.use('/public', express.static(resolve(__dirname, '../public')))
 // Handle a project route specifically
 server.get('/project/:id', async (req, res, next) => {
   let projects = await getProjects(db)
+  let content = await getContent(db)
 
   let project = projects.find(p => p.id === req.params.id)
 
@@ -64,18 +65,20 @@ server.get('/project/:id', async (req, res, next) => {
     meta: generateMeta(req.url, 'Not-Equal Catalyst Project', [
       { property: 'og:description', content: project.name }
     ]),
-    state: baseState
+    state: { ...baseState, content }
   })
 })
 
 // Handle every other route by rendering the vue app
 server.use('*', async (req, res) => {
+  let content = await getContent(db)
+
   renderVueApp(req, res, renderer, req.originalUrl, {
     title: appName,
     meta: generateMeta(req.originalUrl, appName, [
       { property: 'og:description', content: appInfo }
     ]),
-    state: baseState
+    state: { ...baseState, content }
   })
 })
 

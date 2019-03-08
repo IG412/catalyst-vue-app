@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import { makeApiClient } from '@api'
 
-import { MUTATION_PROJECTS, MUTATION_BROWSE } from '@/const'
+import { MUTATION_PROJECTS, MUTATION_BROWSE, MUTATION_CONTENT } from '@/const'
 
 Vue.use(Vuex)
 
@@ -13,6 +13,7 @@ export function makeStore() {
   return new Vuex.Store({
     state: () => ({
       projects: [],
+      content: null,
       browse: [],
       apiUrl: process.env.VUE_APP_API_URL,
       appName: 'Not-Equal Catalyst'
@@ -20,6 +21,10 @@ export function makeStore() {
     getters: {
       apiConf(state) {
         return { prefixUrl: state.apiUrl }
+      },
+      getContent: state => (key, fallback = '') => {
+        if (!state.content) return fallback
+        return state.content[key] || fallback
       }
     },
     mutations: {
@@ -28,6 +33,9 @@ export function makeStore() {
       },
       [MUTATION_BROWSE](state, browse) {
         state.browse = browse
+      },
+      [MUTATION_CONTENT](state, content) {
+        state.content = content
       }
     },
     actions: {
@@ -43,6 +51,14 @@ export function makeStore() {
         try {
           let { data } = await apiClient('browse', getters.apiConf).json()
           commit(MUTATION_BROWSE, data)
+        } catch (error) {
+          console.error(error)
+        }
+      },
+      async fetchContent({ commit, getters }) {
+        try {
+          let { data } = await apiClient('content', getters.apiConf).json()
+          commit(MUTATION_CONTENT, data)
         } catch (error) {
           console.error(error)
         }
