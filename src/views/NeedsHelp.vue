@@ -32,8 +32,6 @@ import ProjectColumns from '@/components/ProjectColumns.vue'
 
 import NeedsHelpSvg from '@/assets/needs-help.svg'
 
-import NeedData from '@/data/needs.json'
-
 import { ROUTE_NEEDS_HELP } from '@/const'
 
 export default {
@@ -53,7 +51,7 @@ export default {
       }
       return Array.from(needs).map(id => ({
         id: id,
-        name: NeedData[id] ? NeedData[id].name : id
+        name: this.$store.getters.getContent(`need.${id}`) || id
       }))
     },
     matchedProjects() {
@@ -79,14 +77,18 @@ export default {
 .need-picker
   display: inline-block
   position: relative
+  padding-right: 1em
   select
     +header-input
   &:after
     display: block
     position: absolute
     content: '▾'
-    top: 0
-    bottom: 0
-    right: 0.3em
+    top: 1px
+    bottom: 6px
+    right: 1px
+    padding-right: 0.1em
     line-height: 1.5
+    background: $theme-yellow
+    pointer-events: none
 </style>

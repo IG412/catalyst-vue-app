@@ -30,7 +30,6 @@ import ProjectColumns from '@/components/ProjectColumns.vue'
 import BrowseSvg from '@/assets/browse.svg'
 
 import CategoryData from '@/data/categories.json'
-import NeedsData from '@/data/needs.json'
 
 const BrowseTitles = {
   newest: 'Newest projects',
@@ -64,8 +63,8 @@ export default {
           return `#${mode.filter}`
         }
         case 'need': {
-          let need = NeedsData[mode.filter]
-          return `Needs ${need ? need.name : this.capitalize(mode.filter)}`
+          let need = this.$store.getters.getContent(`need.${mode.filter}`)
+          return `Needs ${need || this.capitalize(mode.filter)}`
         }
         case 'category': {
           let category = CategoryData[mode.filter]
