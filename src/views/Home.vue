@@ -25,7 +25,6 @@
     
     section.section
       .container
-        h2.title.is-3.is-marginless What is this?
         .content(v-html="aboutContent")
   
   PageFooter

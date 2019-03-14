@@ -25,7 +25,6 @@
                   v-for="theme in project.themes"
                 ) {{theme.name}}
           .column
-            h3.title.is-4.is-marginless What is this?
             .content(v-html="aboutContent")
   
   PageFooter
