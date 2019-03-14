@@ -1,7 +1,7 @@
 <template lang="pug">
 .project-columns
   h2.title.is-3.is-marginless {{ title }}
-  .columns
+  .columns.is-multiline
     .column.is-one-quarter(v-for="project in projects", :key="project.id")
       ProjectCard(:project="project")
 </template>
