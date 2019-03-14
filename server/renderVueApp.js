@@ -8,7 +8,10 @@ async function renderVueApp(req, res, renderer, url, context) {
   try {
     res.end(await renderer.renderToString(context))
   } catch (error) {
-    console.log(error)
+    if (error.code !== 404) {
+      console.log(error)
+    }
+
     if (error.url) {
       res.redirect(error.url)
     } else {
