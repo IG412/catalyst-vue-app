@@ -11,7 +11,7 @@
   section.section.page-expand
     .container
       .project-detail
-        .columns
+        .columns.is-gapless
           .column.is-two-thirds
             .project-detail-card(:class="colorClass")
               .columns
@@ -25,7 +25,7 @@
                   v-for="theme in project.themes"
                 ) {{theme.name}}
           .column
-            .content.about(v-html="aboutContent")
+            .content.what-is-this(v-html="aboutContent")
   
   PageFooter
 </template>
@@ -78,8 +78,17 @@ export default {
   .page.project section
     padding-left: 0
     padding-right: 0
-  .content.about
-    padding: 1em 1.5em
+  .content.what-is-this
+    padding: 2em 1.5em
+
++tablet
+  .content.what-is-this
+    margin-left: 1.5em
+
+.content.what-is-this
+  h1, h2, h3, h4, h5, h6
+    &:first-child
+      margin-bottom: 0
 
 .project-detail-card
   padding: 1em 1.5em
@@ -88,11 +97,14 @@ export default {
   .category-image
     width: 96px
 
-  .content.about
+  .content
     border-radius: 2px
     padding: 1rem
     background-color: rgba(0,0,0,0.1)
     font-family: Helvetica, Arial, sans-serif
+
+    h1, h2, h3, h4, h5, h6
+      color: inherit
 
     +mobile
       padding: 0.75rem
