@@ -24,18 +24,16 @@
               h3.title.inherit-color Help needed
     
     section.section
-      .container
-        .content(v-html="aboutContent")
+      ContentBlock(content-key="about.long")
   
   PageFooter
 </template>
 
 <script>
-import marked from 'marked'
-
 import PrimaryHero from '@/components/PrimaryHero.vue'
 import NavigationCard from '@/components/NavigationCard.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import ContentBlock from '@/components/ContentBlock.vue'
 
 import SearchSvg from '@/assets/search.svg'
 import BrowseSvg from '@/assets/browse.svg'
@@ -48,6 +46,7 @@ export default {
     PrimaryHero,
     NavigationCard,
     PageFooter,
+    ContentBlock,
     SearchSvg,
     BrowseSvg,
     NeedsHelpSvg
@@ -56,12 +55,7 @@ export default {
     browseRoute: { name: ROUTE_BROWSE },
     searchRoute: { name: ROUTE_SEARCH },
     needsHelpRoute: { name: ROUTE_NEEDS_HELP }
-  }),
-  computed: {
-    aboutContent() {
-      return marked(this.$store.getters.getContent('about.long', '...'))
-    }
-  }
+  })
 }
 </script>
 

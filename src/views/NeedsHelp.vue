@@ -17,6 +17,9 @@
         li.is-active: a(href="#") Needs Help
   
   section.section.page-expand
+    ContentBlock(
+      content-key="needs-help.about"
+    )
     .container(v-if="!chosenNeed")
       .notification.is-grey.is-size-4
         | Pick a need to start finding projects
@@ -29,13 +32,20 @@
 import PrimaryHero from '@/components/PrimaryHero.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import ProjectColumns from '@/components/ProjectColumns.vue'
+import ContentBlock from '@/components/ContentBlock.vue'
 
 import NeedsHelpSvg from '@/assets/needs-help.svg'
 
 import { ROUTE_NEEDS_HELP } from '@/const'
 
 export default {
-  components: { PrimaryHero, PageFooter, ProjectColumns, NeedsHelpSvg },
+  components: {
+    PrimaryHero,
+    PageFooter,
+    ProjectColumns,
+    ContentBlock,
+    NeedsHelpSvg
+  },
   data() {
     return {
       chosenNeed: this.$route.query.need || ''

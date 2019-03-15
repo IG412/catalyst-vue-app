@@ -12,6 +12,9 @@
         li.is-active: a(href="#") Browse
   
   section.section.page-expand
+    ContentBlock(
+      content-key="browse.about"
+    )
     .container(v-if="browseData.length > 0")
       ProjectColumns(
         v-for="mode in browseData",
@@ -26,6 +29,7 @@
 import PrimaryHero from '@/components/PrimaryHero.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import ProjectColumns from '@/components/ProjectColumns.vue'
+import ContentBlock from '@/components/ContentBlock.vue'
 
 import BrowseSvg from '@/assets/browse.svg'
 
@@ -39,7 +43,13 @@ const BrowseTitles = {
 }
 
 export default {
-  components: { PrimaryHero, PageFooter, ProjectColumns, BrowseSvg },
+  components: {
+    PrimaryHero,
+    PageFooter,
+    ProjectColumns,
+    ContentBlock,
+    BrowseSvg
+  },
   computed: {
     browseData() {
       return this.$store.state.browse

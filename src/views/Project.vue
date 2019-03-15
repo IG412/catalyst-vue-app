@@ -31,12 +31,13 @@
 </template>
 
 <script>
+import marked from 'marked'
+
 import PrimaryHero from '@/components/PrimaryHero.vue'
 import PageFooter from '@/components/PageFooter.vue'
 
 import CategoryData from '@/data/categories.json'
 import ImageMap from '@/data/categoryImages'
-import marked from 'marked'
 
 export default {
   components: { PrimaryHero, PageFooter },

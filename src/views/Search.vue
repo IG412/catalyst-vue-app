@@ -17,6 +17,9 @@
         li.is-active: a(href="#") Search
   
   section.section.page-expand
+    ContentBlock(
+      content-key="search.about"
+    )
     .container(v-if="!hasQuery")
       .notification.is-grey.is-size-4
         | Enter a term to start searching
@@ -32,6 +35,7 @@
 import PrimaryHero from '@/components/PrimaryHero.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import ProjectColumns from '@/components/ProjectColumns.vue'
+import ContentBlock from '@/components/ContentBlock.vue'
 
 import SearchSvg from '@/assets/search.svg'
 
@@ -42,6 +46,7 @@ export default {
     PrimaryHero,
     PageFooter,
     ProjectColumns,
+    ContentBlock,
     SearchSvg
   },
   data() {
