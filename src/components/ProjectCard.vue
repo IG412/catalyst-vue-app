@@ -60,6 +60,7 @@ a
   .title
     width: 100%
     padding-left: 0.3em
+    padding-bottom: 0.3em
   .category-image
     width: 64px
     padding: 0

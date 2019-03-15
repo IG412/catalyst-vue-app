@@ -25,7 +25,7 @@
                   v-for="theme in project.themes"
                 ) {{theme.name}}
           .column
-            .content(v-html="aboutContent")
+            .content.about(v-html="aboutContent")
   
   PageFooter
 </template>
@@ -74,6 +74,13 @@ export default {
 </script>
 
 <style lang="sass">
++mobile
+  .page.project section
+    padding-left: 0
+    padding-right: 0
+  .content.about
+    padding: 1em 1.5em
+
 .project-detail-card
   padding: 1em 1.5em
   +add-theme-colors
@@ -81,7 +88,7 @@ export default {
   .category-image
     width: 96px
 
-  .content
+  .content.about
     border-radius: 2px
     padding: 1rem
     background-color: rgba(0,0,0,0.1)
