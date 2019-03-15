@@ -8,7 +8,7 @@ async function renderVueApp(req, res, renderer, url, context) {
   try {
     res.end(await renderer.renderToString(context))
   } catch (error) {
-    if (error.code !== 404) {
+    if (error.code !== 404 || error.message.match(/^not found$/i)) {
       console.log(error)
     }
 
