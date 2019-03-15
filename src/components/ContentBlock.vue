@@ -1,5 +1,5 @@
 <template lang="pug">
-.content-block(v-if="content")
+.content-block
   .container
     .content.page-content(v-html="content")
 </template>
