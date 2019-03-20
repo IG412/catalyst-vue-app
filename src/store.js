@@ -3,7 +3,12 @@ import Vuex from 'vuex'
 
 import { makeApiClient } from '@api'
 
-import { MUTATION_PROJECTS, MUTATION_BROWSE, MUTATION_CONTENT } from '@/const'
+import {
+  MUTATION_PROJECTS,
+  MUTATION_BROWSE,
+  MUTATION_CONTENT,
+  MUTATION_SOCKET
+} from '@/const'
 
 Vue.use(Vuex)
 
@@ -16,7 +21,9 @@ export function makeStore() {
       content: null,
       browse: [],
       apiUrl: process.env.VUE_APP_API_URL,
-      appName: 'Not-Equal Catalyst'
+      appName: 'Not-Equal Catalyst',
+      socket: null,
+      bufferedSocketMessages: []
     }),
     getters: {
       apiConf(state) {
@@ -36,6 +43,18 @@ export function makeStore() {
       },
       [MUTATION_CONTENT](state, content) {
         state.content = content
+      },
+      [MUTATION_SOCKET](state, socket) {
+        state.socket = Object.seal(socket)
+
+        // Wait for a connection & send buffered messages
+        // TODO - It shouldn't mutate the state asynchronously
+        socket.addEventListener('open', () => {
+          for (let msg of state.bufferedSocketMessages) {
+            socket.send(msg)
+          }
+          state.bufferedSocketMessages = []
+        })
       }
     },
     actions: {
@@ -61,6 +80,14 @@ export function makeStore() {
           commit(MUTATION_CONTENT, data)
         } catch (error) {
           console.error(error)
+        }
+      },
+      async emitMessage({ state }, payload) {
+        if (!state.socket) return
+        if (state.socket.readyState !== WebSocket.OPEN) {
+          state.bufferedSocketMessages.push(JSON.stringify(payload))
+        } else {
+          state.socket.send(JSON.stringify(payload))
         }
       }
     }

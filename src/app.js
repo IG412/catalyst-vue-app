@@ -7,8 +7,8 @@ import { sync } from 'vuex-router-sync'
 Vue.config.productionTip = false
 
 export function makeApp() {
-  const router = makeRouter()
   const store = makeStore()
+  const router = makeRouter(store)
 
   sync(store, router)
 

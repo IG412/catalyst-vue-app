@@ -19,7 +19,11 @@
                   h1.title.inherit-color {{ project.name }}
                 .column.is-narrow
                   img.category-image(:src="categoryImage")
-              .content(v-html="projectContent")
+              .content(
+                ref="projectContent",
+                v-html="projectContent",
+                @click="contentClick"
+              )
               .tags
                 .tag.is-white.knockout-text.has-font-weight-black(
                   v-for="theme in project.themes"
@@ -68,6 +72,18 @@ export default {
     },
     aboutContent() {
       return marked(this.$store.getters.getContent('about.short', '...'))
+    }
+  },
+  methods: {
+    contentClick(e) {
+      // if they clicked on an anchor, emit a project action
+      if (e.target instanceof HTMLAnchorElement) {
+        this.$store.dispatch('emitMessage', {
+          type: 'project_action',
+          project: this.projectId,
+          link: e.target.getAttribute('href')
+        })
+      }
     }
   }
 }

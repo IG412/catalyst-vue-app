@@ -23,7 +23,7 @@ function makeMeta(pageName) {
   return { meta: { pageName } }
 }
 
-export function makeRouter() {
+export function makeRouter(store) {
   let router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
@@ -68,6 +68,14 @@ export function makeRouter() {
     }
   })
 
+  // Emit a page_view when each page is visited
+  router.beforeEach((to, from, next) => {
+    const { path } = to
+    store.dispatch('emitMessage', { type: 'page_view', path })
+    next()
+  })
+
+  // Update the title when each page is visited
   router.beforeEach((to, from, next) => {
     let title = 'Not-Equal Catalyst'
 
