@@ -70,8 +70,9 @@ export function makeRouter(store) {
 
   // Emit a page_view when each page is visited
   router.beforeEach((to, from, next) => {
-    const { path } = to
-    store.dispatch('emitMessage', { type: 'page_view', path })
+    if (to.path !== from.path) {
+      store.dispatch('emitMessage', { type: 'page_view', path: to.path })
+    }
     next()
   })
 

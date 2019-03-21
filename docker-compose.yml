@@ -32,7 +32,7 @@ services:
   
   # An api to serve the projects in redis
   development-api:
-    image: openlab/catalyst-node-api:0.5.1
+    image: openlab/catalyst-node-api:0.5.2
     restart: unless-stopped
     depends_on:
       - one-time-scraper
