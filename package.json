@@ -1,7 +1,7 @@
 {
   "name": "@openlab/catalyst-vue-webapp",
   "private": true,
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "A Vue web app for browsing, searching and viewing Not-Equal Catalyst projects",
   "repository": "unplatform/catalyst-vue-webapp",
   "author": "Rob Anderson (https://r0b.io)",
