@@ -64,6 +64,10 @@ export function makeRouter(store) {
       if (to.name === ROUTE_BROWSE && from.name === ROUTE_HOME) {
         return { x: 0, y: 0 }
       }
+      // Go to the top if navigating from '/browse'
+      if (from.name === ROUTE_BROWSE) {
+        return { x: 0, y: 0 }
+      }
       return savedPosition
     }
   })

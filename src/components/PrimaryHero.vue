@@ -9,7 +9,7 @@
         .navbar-end.is-hidden-touch
           router-link.navbar-item(to="/browse", active-class="is-active") Browse
           router-link.navbar-item(to="/search", active-class="is-active") Search
-          router-link.navbar-item(to="/needs-help", active-class="is-active") Help needed
+          router-link.navbar-item(to="/needs-help", active-class="is-active") Partner needed
   .hero-body(v-if="$slots.default")
     .container
       slot

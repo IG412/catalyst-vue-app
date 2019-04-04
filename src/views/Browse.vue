@@ -20,6 +20,7 @@
         v-for="mode in browseData",
         :key="browseId(mode)",
         :title="browseTitle(mode)",
+        :route="browseRoute(mode)"
         :projects="mode.projects.slice(0, 4)"
       )
   PageFooter
@@ -34,6 +35,8 @@ import ContentBlock from '@/components/ContentBlock.vue'
 import BrowseSvg from '@/assets/browse.svg'
 
 import CategoryData from '@/data/categories.json'
+
+import { ROUTE_NEEDS_HELP, ROUTE_SEARCH } from '@/const'
 
 const BrowseTitles = {
   newest: 'Newest projects',
@@ -82,6 +85,22 @@ export default {
         }
         default: {
           return BrowseTitles[mode.type] || this.capitalize(mode.type)
+        }
+      }
+    },
+    browseRoute(mode) {
+      switch (mode.type) {
+        case 'need': {
+          const query = { need: mode.filter }
+          return { name: ROUTE_NEEDS_HELP, query }
+        }
+        case 'theme':
+        case 'category': {
+          const query = { query: mode.filter }
+          return { name: ROUTE_SEARCH, query }
+        }
+        default: {
+          return null
         }
       }
     }

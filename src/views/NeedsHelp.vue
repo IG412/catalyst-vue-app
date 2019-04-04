@@ -90,6 +90,8 @@ export default {
   padding-right: 1em
   select
     +header-input
+  option
+    color: $black
   &:after
     display: block
     position: absolute
@@ -100,5 +102,4 @@ export default {
     padding-right: 0.1em
     line-height: 1.5
     background: $theme-yellow
-    pointer-events: none
 </style>
