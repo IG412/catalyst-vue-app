@@ -204,11 +204,3 @@ There are some optional variables too:
 | -------- | -------------------------------------------- |
 | APP_NAME | Set the app's name, used in opengraph        |
 | APP_INFO | Set the app's description, used in opengraph |
-
-## Future work
-
-> Coming soon
-
----
-
-> The code on https://github.com/unplatform/catalyst-vue-webapp is a mirror of https://openlab.ncl.ac.uk/gitlab/catalyst/vue-webapp
